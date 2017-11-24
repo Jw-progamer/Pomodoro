@@ -5,5 +5,5 @@ import com.orm.SugarRecord
 /**
  * Created by josias on 22/11/17.
  */
-data class Work(val name:String, val conf: Corse): SugarRecord<Work>() {
+data class Work(val name:String, val conf: Corse): SugarRecord() {
 }

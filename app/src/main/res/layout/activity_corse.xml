@@ -20,7 +20,7 @@
 
     <SeekBar
         android:id="@+id/time_seek"
-        style="@android:style/Widget.Material.Light.SeekBar"
+        style="@android:style/Widget.Material.SeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -47,6 +47,7 @@
 
     <SeekBar
         android:id="@+id/interval_seek"
+        style="@android:style/Widget.Material.SeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
