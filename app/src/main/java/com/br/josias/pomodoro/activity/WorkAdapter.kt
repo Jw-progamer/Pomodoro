@@ -1,26 +1,40 @@
 package com.br.josias.pomodoro.activity
 
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.br.josias.pomodoro.R
+import com.br.josias.pomodoro.entity.Work
+import com.orm.SugarRecord
 
-/**
- * Created by josias on 24/11/17.
- */
-private class WorkAdapter: RecyclerView.Adapter<WorkHolder>() {
+
+class WorkAdapter(workList: List<Work>) : RecyclerView.Adapter<WorkAdapter.WorkHolder>() {
+
+    private var workList = workList
+
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       return workList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): WorkHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val card = LayoutInflater.from(parent?.context).inflate(R.layout.card_layout,parent,false)
+        val holder = WorkHolder(card)
+        return holder
     }
 
     override fun onBindViewHolder(holder: WorkHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder?.bind(workList[position].name)
+    }
+
+    inner class WorkHolder(val workView: View) : RecyclerView.ViewHolder(workView) {
+        private  var mWorkName: TextView = workView.findViewById(R.id.work_name)
+
+        fun bind(name: String){
+            mWorkName.text = name
+        }
     }
 }
 
-private class WorkHolder(workView: View): RecyclerView.ViewHolder(workView){
-
-}
