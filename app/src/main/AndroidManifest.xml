@@ -12,11 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-
-        <meta-data android:name="DATABASE" android:value="pomodoro.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.br.josias.pomodoro.entity" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="pomodoro.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.br.josias.pomodoro.entity" />
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -25,7 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CorseActivity"></activity>
+        <activity android:name=".activity.CorseActivity" />
+        <activity android:name=".activity.PomodoroActivity"></activity>
     </application>
 
 </manifest>
