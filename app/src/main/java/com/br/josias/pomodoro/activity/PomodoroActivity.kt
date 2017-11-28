@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.br.josias.pomodoro.R
 import com.br.josias.pomodoro.`interface`.CallBack
 import com.br.josias.pomodoro.control.Timer
@@ -46,6 +47,7 @@ class PomodoroActivity : AppCompatActivity(), CallBack, View.OnClickListener {
         timer.startCounter()
 
         mPauseButton.setOnClickListener(this)
+        mStopButton.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -76,6 +78,7 @@ class PomodoroActivity : AppCompatActivity(), CallBack, View.OnClickListener {
 
     override fun cicleOver() {
         runOnUiThread {
+            Toast.makeText(this,"Eu chego aqui,",Toast.LENGTH_SHORT)
             mPomodoroStatus.text = "Interval"
             mClockView.text = "${pomodoroWork.conf.corseInterval}:00"
             timer.startInterval()

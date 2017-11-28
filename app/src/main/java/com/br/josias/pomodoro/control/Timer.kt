@@ -1,5 +1,6 @@
 package com.br.josias.pomodoro.control
 
+import android.util.Log
 import com.br.josias.pomodoro.`interface`.CallBack
 import java.util.concurrent.TimeUnit
 
@@ -18,7 +19,7 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
         stopped = false
         var count = 30
         thread = Thread(Runnable {
-            while (!stopped) {
+            while (!stopped && count !=0) {
                 TimeUnit.MINUTES.sleep(1)
                 count -= 1
                 parent.minutePass()
@@ -35,7 +36,7 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
         stopped = false
         intervalCount = interval
         thread = Thread(Runnable {
-            while (!stopped) {
+            while (!stopped && intervalCount != 0) {
                 TimeUnit.MINUTES.sleep(1)
                 intervalCount -= 1
                 parent.minutePass()
@@ -54,7 +55,7 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
         rest -= 1
         timeCount = time
         thread = Thread(Runnable {
-            while (!stopped) {
+            while (!stopped && timeCount != 0) {
                 TimeUnit.MINUTES.sleep(1)
                 timeCount -= 1
                 parent.minutePass()
