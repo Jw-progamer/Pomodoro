@@ -4,9 +4,6 @@ import android.util.Log
 import com.br.josias.pomodoro.`interface`.CallBack
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by josias on 25/11/17.
- */
 class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBack) {
     var rest = rests
     var timeCount = time

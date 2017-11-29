@@ -49,8 +49,8 @@ class CorseActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateCorseConfig() {
-        corseConfig.corseTime = mTimeSeek.progress
-        corseConfig.corseInterval = mIntervalSeek.progress
+        corseConfig.corseTime = if(mTimeSeek.progress <= 15) 15 else mTimeSeek.progress
+        corseConfig.corseInterval = if(mIntervalSeek.progress <= 5) 5 else mIntervalSeek.progress
         corseConfig.corseRest = mRestNunber.text.toString().toInt()
         corseConfig.save()
 
