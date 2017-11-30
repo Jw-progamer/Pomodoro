@@ -17,7 +17,7 @@
             android:value="pomodoro.db" />
         <meta-data
             android:name="VERSION"
-            android:value="1" />
+            android:value="2" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -35,5 +35,7 @@
         <activity android:name=".activity.CorseActivity" />
         <activity android:name=".activity.PomodoroActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
 </manifest>

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pomodoro_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.br.josias.pomodoro.activity.PomodoroActivity">
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="80dp"
-        android:text="Pausar Pomodoro"
+        android:text="Pausar/Retormar "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clocK_view" />
 
@@ -55,25 +56,26 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pomodoro_status"
-        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stop_button"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintVertical_bias="0.236" />
 
     <TextView
         android:id="@+id/pomodoro_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="52dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30dp"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pause_button"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintVertical_bias="0.236" />
 
     <TextView
         android:id="@+id/clocK_view"
@@ -84,8 +86,22 @@
         android:layout_marginTop="60dp"
         android:text="20:00"
         android:textAppearance="@android:style/TextAppearance.Holo.Large"
-        android:textSize="50dp"
+        android:textSize="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pomodoro_title" />
+
+    <TextView
+        android:id="@+id/pomodoro_paused"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

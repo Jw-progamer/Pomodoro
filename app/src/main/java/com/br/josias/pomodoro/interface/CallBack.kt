@@ -2,7 +2,7 @@ package com.br.josias.pomodoro.`interface`
 
 interface CallBack {
 
-    fun minutePass()
+    fun secondPass()
 
     fun cicleOver()
 

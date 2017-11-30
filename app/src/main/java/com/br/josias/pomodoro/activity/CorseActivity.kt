@@ -29,11 +29,11 @@ class CorseActivity : AppCompatActivity(), View.OnClickListener {
         mRestNunber = findViewById(R.id.rest_number)
         mSaveButton = findViewById(R.id.save_button)
 
-        val id = intent.getLongExtra("config",678)
+        val id = intent.getLongExtra("config",0)
         corseConfig = SugarRecord.findById(Corse::class.java, id)
 
         mTimeSeek.progress = corseConfig.corseTime
-        mTimeSeek.progress = corseConfig.corseInterval
+        mIntervalSeek.progress = corseConfig.corseInterval
 
         var number: Editable = Editable.Factory().newEditable(corseConfig.corseRest.toString())
 
@@ -49,8 +49,8 @@ class CorseActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateCorseConfig() {
-        corseConfig.corseTime = if(mTimeSeek.progress <= 15) 15 else mTimeSeek.progress
-        corseConfig.corseInterval = if(mIntervalSeek.progress <= 5) 5 else mIntervalSeek.progress
+        corseConfig.corseTime = mTimeSeek.progress
+        corseConfig.corseInterval = mIntervalSeek.progress
         corseConfig.corseRest = mRestNunber.text.toString().toInt()
         corseConfig.save()
 

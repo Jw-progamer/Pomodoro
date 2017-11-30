@@ -2,27 +2,31 @@ package com.br.josias.pomodoro.control
 
 import android.util.Log
 import com.br.josias.pomodoro.`interface`.CallBack
+import com.br.josias.pomodoro.enuns.State
 import java.util.concurrent.TimeUnit
 
 class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBack) {
     var rest = rests
-    var timeCount = time
-    var intervalCount = interval
+    var timeCount = time * 60
+    var intervalCount = interval * 60
     lateinit var thread: Thread
     var stopped = true
-    var lock = true
+    var paused = false
+    var restCount = 30 * 60
 
     fun startRest() {
         stopped = false
-        var count = 30
         thread = Thread(Runnable {
-            while (!stopped && count !=0) {
-                TimeUnit.MINUTES.sleep(1)
-                count -= 1
-                parent.minutePass()
+            while (!stopped && restCount != 0 && !paused) {
+                TimeUnit.SECONDS.sleep(1)
+                restCount--
+                parent.secondPass()
             }
-            stopped = true
-            parent.restOver()
+            if(!paused){
+                restCount = 30 * 60
+                stopped = true
+                parent.restOver()
+            }
         })
 
         thread.start()
@@ -31,15 +35,16 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
     fun startInterval() {
 
         stopped = false
-        intervalCount = interval
         thread = Thread(Runnable {
-            while (!stopped && intervalCount != 0) {
-                TimeUnit.MINUTES.sleep(1)
-                intervalCount -= 1
-                parent.minutePass()
+            while (!stopped && intervalCount != 0 && !paused) {
+                TimeUnit.SECONDS.sleep(1)
+                intervalCount--
+                parent.secondPass()
             }
-            stopped = true
-            parent.intervalOver()
+           if(!paused){
+               stopped = true
+               parent.intervalOver()
+           }
         })
 
         thread.start()
@@ -49,25 +54,34 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
     fun startCounter() {
 
         stopped = false
-        rest -= 1
-        timeCount = time
+        rest--
         thread = Thread(Runnable {
-            while (!stopped && timeCount != 0) {
-                TimeUnit.MINUTES.sleep(1)
-                timeCount -= 1
-                parent.minutePass()
+            while (!stopped && timeCount != 0 && !paused) {
+                TimeUnit.SECONDS.sleep(1)
+                timeCount--
+                parent.secondPass()
             }
-            stopped = true
-            if (rest != 0) {
-                parent.cicleOver()
-            } else {
-                rest = rests
-                parent.isRest()
+            if (!paused) {
+                stopped = true
+                timeCount = time * 60
+                if (rest != 0) {
+                    parent.cicleOver()
+                } else {
+                    rest = rests
+                    parent.isRest()
+                }
             }
         })
 
         thread.start()
 
+    }
+
+    fun pauseCounter(){
+        if(!paused){
+            paused = true
+            thread.join()
+        }
     }
 
     fun stopCounter() {
@@ -77,10 +91,14 @@ class Timer(val time: Int, val interval: Int, val rests: Int, val parent: CallBa
         }
     }
 
-    fun restartCounter() {
-        if (stopped) {
-            stopped = false
-            startCounter()
+    fun restartCounter(state: String) {
+        if (paused) {
+            paused = false
+            when(state){
+                State.POMODORO.toString() -> startCounter()
+                State.INTERVAlO.toString() -> startInterval()
+                State.DESCANÇO.toString() -> startRest()
+            }
         }
     }
 }
